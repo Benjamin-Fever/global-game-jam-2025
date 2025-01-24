@@ -1,3 +1,6 @@
-[gd_scene format=3 uid="uid://dq2sg2tch7esk"]
+[gd_scene load_steps=2 format=3 uid="uid://dq2sg2tch7esk"]
+
+[ext_resource type="Script" path="res://common/Scene2D.cs" id="1_kff0g"]
 
 [node name="Level1" type="Node2D"]
+script = ExtResource("1_kff0g")
