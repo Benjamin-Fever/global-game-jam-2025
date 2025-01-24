@@ -40,4 +40,10 @@ public partial class SceneManager : Node {
 	public static void CloseGame() {
 		instance.GetTree().Quit();
 	}
+
+
+	public static Array<Vector2> GetPathToPoint(Vector2 start, Vector2 end) {
+		return currentScene?.GetPathToPoint(start, end);
+	}
+
 }
