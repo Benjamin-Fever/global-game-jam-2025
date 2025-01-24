@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cionwii06gyax"]
+[gd_scene load_steps=16 format=3 uid="uid://cionwii06gyax"]
 
 [ext_resource type="Script" path="res://common/SceneManager.cs" id="1_j7u0r"]
 [ext_resource type="PackedScene" uid="uid://dq2sg2tch7esk" path="res://scenes/level1.tscn" id="2_k4b3g"]
@@ -14,7 +14,13 @@
 [ext_resource type="Script" path="res://entities/player/BubbleStates/ReflectingState.cs" id="12_21540"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rg811"]
-size = Vector2(64, 48.5)
+size = Vector2(64, 82)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dowwn"]
+radius = 142.172
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_avwt1"]
+size = Vector2(99, 75)
 
 [node name="TestPlayer" type="Node2D"]
 
@@ -58,25 +64,50 @@ script = ExtResource("12_21540")
 [node name="Hitbox" type="Area2D" parent="Player"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Hitbox"]
-position = Vector2(564, 240.75)
+position = Vector2(564, 224)
 shape = SubResource("RectangleShape2D_rg811")
 
 [node name="BlockingBubble" type="Node2D" parent="Player"]
 visible = false
 
 [node name="ColorRect" type="ColorRect" parent="Player/BlockingBubble"]
-offset_left = 524.0
-offset_top = 209.0
-offset_right = 607.0
-offset_bottom = 274.0
+offset_left = 523.0
+offset_top = 173.0
+offset_right = 613.0
+offset_bottom = 273.0
 color = Color(0.156863, 1, 1, 1)
 
 [node name="ReflectingBubble" type="Node2D" parent="Player"]
 visible = false
 
 [node name="ColorRect" type="ColorRect" parent="Player/ReflectingBubble"]
-offset_left = 524.0
-offset_top = 209.0
-offset_right = 607.0
-offset_bottom = 274.0
-color = Color(1, 0.137255, 0.333333, 1)
+offset_left = 523.0
+offset_top = 173.0
+offset_right = 613.0
+offset_bottom = 273.0
+color = Color(0.884198, 0.926025, 0.308746, 1)
+
+[node name="Shockwave" type="Area2D" parent="Player"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Shockwave"]
+position = Vector2(564, 227)
+shape = SubResource("CircleShape2D_dowwn")
+debug_color = Color(0.963093, 0.111309, 0.400728, 0.42)
+
+[node name="TestEnemy" type="CharacterBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TestEnemy"]
+position = Vector2(250.5, 260.5)
+shape = SubResource("RectangleShape2D_avwt1")
+debug_color = Color(0.502378, 0.427152, 1, 0.42)
+
+[node name="TestEnemy2" type="CharacterBody2D" parent="."]
+scale = Vector2(1.34043, 1.48909)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TestEnemy2"]
+position = Vector2(250.5, 260.5)
+shape = SubResource("RectangleShape2D_avwt1")
+debug_color = Color(0.502378, 0.427152, 1, 0.42)
+
+[connection signal="body_entered" from="Player/Hitbox" to="Player/MovingStateMachine/DashState" method="onCollide"]
+[connection signal="body_entered" from="Player/Shockwave" to="Player/MovingStateMachine/StompState" method="onShockwaveCollided"]

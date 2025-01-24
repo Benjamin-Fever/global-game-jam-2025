@@ -29,7 +29,7 @@ public partial class MovingState : State {
         if (Input.IsActionPressed("move_up")) input.Y -= 1;
         if (Input.IsActionPressed("move_down")) input.Y += 1;
 
-        input = input.Normalized() * 200;
+        input = input.Normalized() * Speed;
         character.Velocity = input;
         character.MoveAndSlide();
 
