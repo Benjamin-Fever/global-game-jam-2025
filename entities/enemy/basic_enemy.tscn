@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bqy4kwoeaoj6f"]
+[gd_scene load_steps=14 format=3 uid="uid://bqy4kwoeaoj6f"]
 
 [ext_resource type="Script" path="res://entities/enemy/BasicEnemy.cs" id="1_h31uj"]
 [ext_resource type="Texture2D" uid="uid://dhh87ttqr3r64" path="res://entities/enemy/Sprite-0002-Skull_scaled_35x_pngcrushed.png" id="1_h587q"]
@@ -19,6 +19,9 @@ radius = 209.194
 [sub_resource type="CircleShape2D" id="CircleShape2D_48vl5"]
 radius = 36.6742
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_jo3g0"]
+radius = 20.6155
+
 [node name="BasicEnemy" type="CharacterBody2D"]
 floor_max_angle = 0.0
 script = ExtResource("1_h31uj")
@@ -32,8 +35,9 @@ texture = ExtResource("1_h587q")
 [node name="CollisionBox" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_olc2j")
 
-[node name="StateMachine" type="Node" parent="."]
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("currentState")]
 script = ExtResource("3_fd7eh")
+currentState = NodePath("IdleEnemyState")
 
 [node name="IdleEnemyState" type="Node" parent="StateMachine"]
 script = ExtResource("4_faack")
@@ -62,6 +66,9 @@ script = ExtResource("8_if58v")
 
 [node name="Hitbox" type="Area2D" parent="."]
 script = ExtResource("9_tfp6q")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("CircleShape2D_jo3g0")
 
 [connection signal="PlayerDetected" from="AgroRange" to="StateMachine" method="ChangeState" binds= ["ChasePlayerState"]]
 [connection signal="PlayerDetected" from="NearRange" to="StateMachine" method="ChangeState" binds= ["AttackEnemyState"]]
