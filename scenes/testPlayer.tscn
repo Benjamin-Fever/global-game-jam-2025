@@ -1,28 +1,8 @@
-[gd_scene load_steps=19 format=3 uid="uid://cionwii06gyax"]
+[gd_scene load_steps=5 format=3 uid="uid://cionwii06gyax"]
 
 [ext_resource type="Script" path="res://common/SceneManager.cs" id="1_j7u0r"]
-[ext_resource type="PackedScene" uid="uid://dq2sg2tch7esk" path="res://scenes/level1.tscn" id="2_k4b3g"]
 [ext_resource type="PackedScene" uid="uid://dx1jyuvel2xlh" path="res://entities/player/player.tscn" id="3_cg6pv"]
 [ext_resource type="Script" path="res://entities/player/Character.cs" id="4_8wb7i"]
-[ext_resource type="Script" path="res://common/Statemachine/StateMachine.cs" id="5_j04j3"]
-[ext_resource type="Script" path="res://entities/player/MovingStates/IdleState.cs" id="6_4ax6k"]
-[ext_resource type="Script" path="res://entities/player/MovingStates/MovingState.cs" id="7_q0hy1"]
-[ext_resource type="Script" path="res://entities/player/MovingStates/DashState.cs" id="8_j2846"]
-[ext_resource type="Script" path="res://entities/player/MovingStates/StompState.cs" id="9_ogskm"]
-[ext_resource type="Script" path="res://entities/player/BubbleStates/DefaultState.cs" id="10_vxjtm"]
-[ext_resource type="Script" path="res://entities/player/BubbleStates/BlockingState.cs" id="11_roqo4"]
-[ext_resource type="Script" path="res://entities/player/BubbleStates/ReflectingState.cs" id="12_21540"]
-[ext_resource type="Script" path="res://common/Hurtbox.cs" id="13_y7vet"]
-[ext_resource type="Script" path="res://common/HealthComponent.cs" id="14_6a7kk"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_rg811"]
-size = Vector2(64, 82)
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_dowwn"]
-radius = 142.172
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_4ew7v"]
-size = Vector2(64, 50)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_avwt1"]
 size = Vector2(99, 75)
@@ -32,87 +12,8 @@ size = Vector2(99, 75)
 [node name="SceneManager" type="Node" parent="."]
 script = ExtResource("1_j7u0r")
 
-[node name="Level1" parent="SceneManager" instance=ExtResource("2_k4b3g")]
-
 [node name="Player" parent="SceneManager" instance=ExtResource("3_cg6pv")]
 script = ExtResource("4_8wb7i")
-
-[node name="MovingStateMachine" type="Node" parent="SceneManager/Player" node_paths=PackedStringArray("currentState")]
-script = ExtResource("5_j04j3")
-currentState = NodePath("IdleState")
-
-[node name="IdleState" type="Node" parent="SceneManager/Player/MovingStateMachine"]
-script = ExtResource("6_4ax6k")
-
-[node name="MovingState" type="Node" parent="SceneManager/Player/MovingStateMachine"]
-script = ExtResource("7_q0hy1")
-
-[node name="DashState" type="Node" parent="SceneManager/Player/MovingStateMachine"]
-script = ExtResource("8_j2846")
-
-[node name="StompState" type="Node" parent="SceneManager/Player/MovingStateMachine"]
-script = ExtResource("9_ogskm")
-
-[node name="BubbleStateMachine" type="Node" parent="SceneManager/Player" node_paths=PackedStringArray("currentState")]
-script = ExtResource("5_j04j3")
-currentState = NodePath("DefaultState")
-
-[node name="DefaultState" type="Node" parent="SceneManager/Player/BubbleStateMachine"]
-script = ExtResource("10_vxjtm")
-
-[node name="BlockingState" type="Node" parent="SceneManager/Player/BubbleStateMachine"]
-script = ExtResource("11_roqo4")
-
-[node name="ReflectingState" type="Node" parent="SceneManager/Player/BubbleStateMachine"]
-script = ExtResource("12_21540")
-
-[node name="Hitbox" type="Area2D" parent="SceneManager/Player"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SceneManager/Player/Hitbox"]
-position = Vector2(564, 224)
-shape = SubResource("RectangleShape2D_rg811")
-
-[node name="BlockingBubble" type="Node2D" parent="SceneManager/Player"]
-visible = false
-
-[node name="ColorRect" type="ColorRect" parent="SceneManager/Player/BlockingBubble"]
-offset_left = 523.0
-offset_top = 173.0
-offset_right = 613.0
-offset_bottom = 273.0
-color = Color(0.156863, 1, 1, 1)
-
-[node name="ReflectingBubble" type="Node2D" parent="SceneManager/Player"]
-visible = false
-
-[node name="ColorRect" type="ColorRect" parent="SceneManager/Player/ReflectingBubble"]
-offset_left = 523.0
-offset_top = 173.0
-offset_right = 613.0
-offset_bottom = 273.0
-color = Color(0.884198, 0.926025, 0.308746, 1)
-
-[node name="Shockwave" type="Area2D" parent="SceneManager/Player"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SceneManager/Player/Shockwave"]
-position = Vector2(564, 227)
-shape = SubResource("CircleShape2D_dowwn")
-debug_color = Color(0.963093, 0.111309, 0.400728, 0.42)
-
-[node name="Hurtbox" type="Area2D" parent="SceneManager/Player"]
-script = ExtResource("13_y7vet")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SceneManager/Player/Hurtbox"]
-position = Vector2(564, 224)
-shape = SubResource("RectangleShape2D_rg811")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SceneManager/Player"]
-position = Vector2(564, 239)
-shape = SubResource("RectangleShape2D_4ew7v")
-
-[node name="Health" type="Node" parent="SceneManager/Player"]
-script = ExtResource("14_6a7kk")
-MaxHealth = 3
 
 [node name="TestEnemy" type="CharacterBody2D" parent="SceneManager"]
 
@@ -128,7 +29,3 @@ scale = Vector2(1.34043, 1.48909)
 position = Vector2(250.5, 260.5)
 shape = SubResource("RectangleShape2D_avwt1")
 debug_color = Color(0.502378, 0.427152, 1, 0.42)
-
-[connection signal="body_entered" from="SceneManager/Player/Hitbox" to="SceneManager/Player/MovingStateMachine/DashState" method="onCollide"]
-[connection signal="body_entered" from="SceneManager/Player/Shockwave" to="SceneManager/Player/MovingStateMachine/StompState" method="onShockwaveCollided"]
-[connection signal="HitReceived" from="SceneManager/Player/Hurtbox" to="SceneManager/Player" method="OnHit"]

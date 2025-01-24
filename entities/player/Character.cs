@@ -19,7 +19,8 @@ public partial class Character : CharacterBody2D {
         
     }
 
-    public void OnHit(){
+    public void OnHit(Hitbox hitbox){
+        //if(hitbox.GetParent() == )
         if (BubbleStateMachine?.currentState.Name == "BlockingState" && bubbleBlock > 0) {
             bubbleBlock -= 1;
         }

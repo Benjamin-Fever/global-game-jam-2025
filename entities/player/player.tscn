@@ -1,4 +1,101 @@
-[gd_scene format=3 uid="uid://dx1jyuvel2xlh"]
+[gd_scene load_steps=14 format=3 uid="uid://dx1jyuvel2xlh"]
+
+[ext_resource type="Script" path="res://common/Statemachine/StateMachine.cs" id="1_sw0fi"]
+[ext_resource type="Script" path="res://entities/player/MovingStates/IdleState.cs" id="2_6d5jx"]
+[ext_resource type="Script" path="res://entities/player/MovingStates/MovingState.cs" id="3_h31n6"]
+[ext_resource type="Script" path="res://entities/player/MovingStates/DashState.cs" id="4_6xyvm"]
+[ext_resource type="Script" path="res://entities/player/MovingStates/StompState.cs" id="5_hvo7w"]
+[ext_resource type="Script" path="res://entities/player/BubbleStates/DefaultState.cs" id="6_wqwjn"]
+[ext_resource type="Script" path="res://entities/player/BubbleStates/BlockingState.cs" id="7_rldmw"]
+[ext_resource type="Script" path="res://entities/player/BubbleStates/ReflectingState.cs" id="8_o1ixl"]
+[ext_resource type="Script" path="res://common/Hurtbox.cs" id="9_i4fe4"]
+[ext_resource type="Script" path="res://common/HealthComponent.cs" id="10_wldwt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_28cc2"]
+size = Vector2(64, 82)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_30syb"]
+radius = 142.172
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t1tcu"]
+size = Vector2(64, 50)
 
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 29
+
+[node name="MovingStateMachine" type="Node" parent="." node_paths=PackedStringArray("currentState")]
+script = ExtResource("1_sw0fi")
+currentState = NodePath("IdleState")
+
+[node name="IdleState" type="Node" parent="MovingStateMachine"]
+script = ExtResource("2_6d5jx")
+
+[node name="MovingState" type="Node" parent="MovingStateMachine"]
+script = ExtResource("3_h31n6")
+
+[node name="DashState" type="Node" parent="MovingStateMachine"]
+script = ExtResource("4_6xyvm")
+
+[node name="StompState" type="Node" parent="MovingStateMachine"]
+script = ExtResource("5_hvo7w")
+
+[node name="BubbleStateMachine" type="Node" parent="." node_paths=PackedStringArray("currentState")]
+script = ExtResource("1_sw0fi")
+currentState = NodePath("DefaultState")
+
+[node name="DefaultState" type="Node" parent="BubbleStateMachine"]
+script = ExtResource("6_wqwjn")
+
+[node name="BlockingState" type="Node" parent="BubbleStateMachine"]
+script = ExtResource("7_rldmw")
+
+[node name="ReflectingState" type="Node" parent="BubbleStateMachine"]
+script = ExtResource("8_o1ixl")
+
+[node name="Hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(564, 224)
+shape = SubResource("RectangleShape2D_28cc2")
+
+[node name="BlockingBubble" type="Node2D" parent="."]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="BlockingBubble"]
+offset_left = 523.0
+offset_top = 173.0
+offset_right = 613.0
+offset_bottom = 273.0
+color = Color(0.156863, 1, 1, 1)
+
+[node name="ReflectingBubble" type="Node2D" parent="."]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="ReflectingBubble"]
+offset_left = 523.0
+offset_top = 173.0
+offset_right = 613.0
+offset_bottom = 273.0
+color = Color(0.884198, 0.926025, 0.308746, 1)
+
+[node name="Shockwave" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Shockwave"]
+position = Vector2(564, 227)
+shape = SubResource("CircleShape2D_30syb")
+debug_color = Color(0.963093, 0.111309, 0.400728, 0.42)
+
+[node name="Hurtbox" type="Area2D" parent="."]
+script = ExtResource("9_i4fe4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(564, 224)
+shape = SubResource("RectangleShape2D_28cc2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(564, 239)
+shape = SubResource("RectangleShape2D_t1tcu")
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("10_wldwt")
+MaxHealth = 3
