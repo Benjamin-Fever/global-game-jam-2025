@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://bqy4kwoeaoj6f"]
+
+[ext_resource type="Script" path="res://entities/enemy/BasicEnemy.cs" id="1_h31uj"]
+[ext_resource type="Texture2D" uid="uid://dhh87ttqr3r64" path="res://entities/enemy/Sprite-0002-Skull_scaled_35x_pngcrushed.png" id="1_h587q"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_olc2j"]
+size = Vector2(20, 28)
+
+[node name="BasicEnemy" type="CharacterBody2D"]
+script = ExtResource("1_h31uj")
+Speed = 7000.0
+
+[node name="Sprite-0002-skullScaled35xPngcrushed" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0, -15)
+texture = ExtResource("1_h587q")
+
+[node name="CollisionBox" type="CollisionShape2D" parent="."]
+position = Vector2(0, -14)
+shape = SubResource("RectangleShape2D_olc2j")
