@@ -3,7 +3,7 @@ using Godot;
 [GlobalClass]
 public partial class SceneManager : Node {
 	public static SceneManager instance;
-	private Node2D _currentScene;
+	private Scene2D _currentScene;
 
 
 	public override void _EnterTree() {
@@ -11,7 +11,7 @@ public partial class SceneManager : Node {
 	}
 
 	public override void _Ready() {
-		_currentScene = GetChildOrNull<Node2D>(0);
+		_currentScene = GetChildOrNull<Scene2D>(0);
 	}
 
 	public override void _Process(double delta) {
@@ -28,13 +28,15 @@ public partial class SceneManager : Node {
 	}
 
 	public static void ChangeScene(PackedScene scene) {
-		ChangeScene(scene.Instantiate<Node2D>());
+		ChangeScene(scene.Instantiate<Scene2D>());
 	}
 
-	public static void ChangeScene(Node2D scene) {
+	public static void ChangeScene(Scene2D scene) {
+		instance._currentScene.Save();
 		instance._currentScene.QueueFree();
 		instance._currentScene = scene;
 		instance.AddChild(scene);
+		scene.Load();
 	}
 
 	public static void CloseGame() {
