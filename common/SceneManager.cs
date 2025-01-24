@@ -1,9 +1,10 @@
 using Godot;
+using Godot.Collections;
 
 [GlobalClass]
 public partial class SceneManager : Node {
 	public static SceneManager instance;
-	public Scene2D currentScene;
+	public static Scene2D currentScene;
 
 
 	public override void _EnterTree() {
@@ -32,9 +33,9 @@ public partial class SceneManager : Node {
 	}
 
 	public static void ChangeScene(Scene2D scene) {
-		instance.currentScene.Save();
-		instance.currentScene.QueueFree();
-		instance.currentScene = scene;
+		currentScene.Save();
+		currentScene.QueueFree();
+		currentScene = scene;
 		instance.AddChild(scene);
 		scene.Load();
 	}
@@ -43,7 +44,7 @@ public partial class SceneManager : Node {
 		instance.GetTree().Quit();
 	}
 
-	public static Vector2[] GetPathToPoint(Vector2 start, Vector2 end) {
-		return instance.currentScene?.GetPathToPoint(start, end);
+	public static Array<Vector2> GetPathToPoint(Vector2 start, Vector2 end) {
+		return currentScene?.GetPathToPoint(start, end);
 	}
 }

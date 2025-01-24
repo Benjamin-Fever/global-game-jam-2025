@@ -6,10 +6,9 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_olc2j"]
 size = Vector2(20, 28)
 
-[node name="BasicEnemy" type="CharacterBody2D" node_paths=PackedStringArray("NavigationAgent")]
+[node name="BasicEnemy" type="CharacterBody2D"]
 script = ExtResource("1_h31uj")
 Speed = 7000.0
-NavigationAgent = NodePath("")
 
 [node name="Sprite-0002-skullScaled35xPngcrushed" type="Sprite2D" parent="."]
 texture_filter = 1
