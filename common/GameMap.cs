@@ -10,6 +10,7 @@ public partial class GameMap : TileMapLayer {
         astar.DefaultComputeHeuristic = AStarGrid2D.Heuristic.Manhattan;
         astar.DefaultEstimateHeuristic = AStarGrid2D.Heuristic.Manhattan;
         astar.DiagonalMode = AStarGrid2D.DiagonalModeEnum.OnlyIfNoObstacles;
+        astar.Offset = (Vector2)TileSet.TileSize / 2;
 
         
         Vector2I tileLayerSize = GetUsedRect().End - GetUsedRect().Position;
