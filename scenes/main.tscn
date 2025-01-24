@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://c04oio7hv1tvw"]
+[gd_scene load_steps=5 format=3 uid="uid://c04oio7hv1tvw"]
 
 [ext_resource type="PackedScene" uid="uid://dq2sg2tch7esk" path="res://scenes/level1.tscn" id="1_nl73b"]
 [ext_resource type="Script" path="res://common/SceneManager.cs" id="1_x06rd"]
+[ext_resource type="Script" path="res://scenes/level_1.gd" id="3_30hj5"]
 [ext_resource type="PackedScene" uid="uid://dx1jyuvel2xlh" path="res://entities/player/player.tscn" id="3_ptmnc"]
 
 [node name="Main" type="Node"]
@@ -10,5 +11,10 @@
 script = ExtResource("1_x06rd")
 
 [node name="Level1" parent="SceneManager" instance=ExtResource("1_nl73b")]
+visible = false
+script = ExtResource("3_30hj5")
+
+[node name="level1copy" parent="SceneManager" instance=ExtResource("1_nl73b")]
+script = ExtResource("3_30hj5")
 
 [node name="Player" parent="." instance=ExtResource("3_ptmnc")]

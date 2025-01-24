@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=4 uid="uid://dq2sg2tch7esk"]
+[gd_scene load_steps=8 format=4 uid="uid://dq2sg2tch7esk"]
 
 [ext_resource type="Script" path="res://common/Scene2D.cs" id="1_kff0g"]
 [ext_resource type="PackedScene" uid="uid://bqy4kwoeaoj6f" path="res://entities/enemy/basic_enemy.tscn" id="2_i0655"]
 [ext_resource type="Texture2D" uid="uid://dqjy56bachlap" path="res://scenes/temp_tileset.png" id="3_m28ab"]
 [ext_resource type="Script" path="res://common/GameMap.cs" id="4_qb84b"]
+[ext_resource type="PackedScene" uid="uid://btd76hb2m8x7x" path="res://scenes/Elements/Doors/Door_Up.tscn" id="5_mw7l6"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1d6fv"]
 texture = ExtResource("3_m28ab")
@@ -31,3 +32,6 @@ script = ExtResource("4_qb84b")
 [node name="BasicEnemy" parent="." instance=ExtResource("2_i0655")]
 position = Vector2(694, 214)
 Speed = 200.0
+
+[node name="Door" parent="." instance=ExtResource("5_mw7l6")]
+position = Vector2(469, 7)
