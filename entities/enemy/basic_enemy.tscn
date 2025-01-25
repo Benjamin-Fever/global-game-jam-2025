@@ -48,10 +48,9 @@ currentState = NodePath("IdleEnemyState")
 [node name="IdleEnemyState" type="Node" parent="StateMachine"]
 script = ExtResource("4_faack")
 
-[node name="ChasePlayerState" type="Node" parent="StateMachine" node_paths=PackedStringArray("velocityComponent")]
+[node name="ChasePlayerState" type="Node" parent="StateMachine"]
 script = ExtResource("5_6lj4q")
 ChaseSpeed = 3000.0
-velocityComponent = NodePath("../../VelocityComponent")
 
 [node name="AttackPlayerState" type="Node" parent="StateMachine"]
 script = ExtResource("6_1grur")
@@ -76,7 +75,3 @@ script = ExtResource("9_tfp6q")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource("CircleShape2D_jo3g0")
 debug_color = Color(0, 0.6, 0.701961, 0)
-
-[connection signal="PlayerEntered" from="AgroRange" to="StateMachine" method="ChangeState" binds= ["ChasePlayerState"]]
-[connection signal="PlayerEntered" from="NearRange" to="StateMachine" method="ChangeState" binds= ["AttackPlayerState"]]
-[connection signal="PlayerExited" from="NearRange" to="StateMachine" method="ChangeState" binds= ["ChasePlayerState"]]

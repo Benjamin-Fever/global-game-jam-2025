@@ -39,7 +39,7 @@ public partial class DashState : State {
     public void onCollide(Node2D enemy){
         if(shielded){
             if(enemy.IsInGroup("enemy")){
-                //enemy.Velocity = dashDirection * PushDistance;
+                enemy.GetNode<VelocityComponent>("VelocityComponent").Velocity = dashDirection * PushDistance;
             }
         }
     }

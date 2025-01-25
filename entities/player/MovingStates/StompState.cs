@@ -24,7 +24,7 @@ public partial class StompState : State {
                     Vector2 direction = locationEnemy - locationPlayer;
                     Vector2 normalisedDirection = direction.Normalized();
                     
-                    enemy.Velocity = normalisedDirection * PushDistance;
+                    enemy.GetNode<VelocityComponent>("VelocityComponent").Velocity = normalisedDirection * PushDistance;
 
                 }
 
