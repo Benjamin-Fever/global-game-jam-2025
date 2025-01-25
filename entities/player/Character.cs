@@ -1,6 +1,7 @@
 using Godot;
 using System;
 
+[GlobalClass]
 public partial class Character : CharacterBody2D {
     private StateMachine MovingStateMachine;
     private StateMachine BubbleStateMachine;
