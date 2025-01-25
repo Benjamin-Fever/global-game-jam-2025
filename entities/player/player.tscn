@@ -22,9 +22,10 @@ radius = 64.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t1tcu"]
 size = Vector2(32, 15)
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("health")]
 collision_layer = 4
 script = ExtResource("1_r3kdq")
+health = NodePath("Health")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -96,6 +97,8 @@ shape = SubResource("CircleShape2D_30syb")
 debug_color = Color(0.964706, 0.109804, 0.4, 0)
 
 [node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
 script = ExtResource("9_i4fe4")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Hurtbox"]
@@ -111,3 +114,4 @@ script = ExtResource("10_wldwt")
 MaxHealth = 3
 
 [connection signal="body_entered" from="Hitbox" to="MovingStateMachine/DashState" method="OnCollide"]
+[connection signal="area_entered" from="Hurtbox" to="." method="OnOverlap"]
