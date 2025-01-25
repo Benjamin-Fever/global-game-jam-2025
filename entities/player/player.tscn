@@ -1,6 +1,7 @@
-[gd_scene load_steps=15 format=3 uid="uid://dx1jyuvel2xlh"]
+[gd_scene load_steps=16 format=3 uid="uid://dx1jyuvel2xlh"]
 
 [ext_resource type="Texture2D" uid="uid://b8q5bve5m4djc" path="res://entities/player/player.png" id="1_2udet"]
+[ext_resource type="Script" path="res://entities/player/Character.cs" id="1_r3kdq"]
 [ext_resource type="Script" path="res://common/Statemachine/StateMachine.cs" id="1_sw0fi"]
 [ext_resource type="Script" path="res://entities/player/MovingStates/IdleState.cs" id="2_6d5jx"]
 [ext_resource type="Script" path="res://entities/player/MovingStates/MovingState.cs" id="3_h31n6"]
@@ -23,6 +24,7 @@ size = Vector2(32, 15)
 
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 29
+script = ExtResource("1_r3kdq")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
