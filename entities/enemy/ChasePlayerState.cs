@@ -24,7 +24,9 @@ public partial class ChasePlayerState : State {
 		Vector2 direction = velocityComponent.body.GlobalPosition.DirectionTo(path[0]);
 		if (velocityComponent.body.GlobalPosition.DistanceTo(path[0]) < 3) {
 			velocityComponent.body.GlobalPosition = path[0];
+			velocityComponent.Velocity = Vector2.Zero;
 			path.RemoveAt(0);
+			return;
 		}
 		velocityComponent.Velocity = direction.Normalized() * ChaseSpeed * (float)delta;
     }
