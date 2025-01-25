@@ -32,6 +32,7 @@ public partial class Breakable : Area2D
 
 			if(dashingState.IsActive && dashingState.shielded){
 				//wall breaks animation or something
+				
 				if (player is Character)
 					{
 						player.GlobalPosition = DestinationVector;
