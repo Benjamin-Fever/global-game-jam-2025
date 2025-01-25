@@ -2,7 +2,7 @@ using Godot;
 using Godot.Collections;
 
 [GlobalClass]
-public partial class SceneManager : Node {
+public partial class SceneManager : Node2D {
 	public static SceneManager instance;
 	public static Scene2D currentScene;
 

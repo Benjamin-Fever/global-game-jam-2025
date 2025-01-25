@@ -1,9 +1,11 @@
 using Godot;
 using System;
+using System.Runtime.Serialization;
 
 public partial class StompState : State {
     private const float StompDuration = 1f;
     private float stompTime;
+    private const float PushDistance = 32f;
 
     public override void Enter() {
         GD.Print("Entering Stomp State");
@@ -15,9 +17,12 @@ public partial class StompState : State {
         if (bubbleStateMachine?.currentState.Name == "BlockingState") {
             GD.Print("Creating Shockwave (Shielded Stomp)");
             
-            //DO SHOCKWAVE HERE
+            var shockwave = character.GetNodeOrNull<Area2D>("Shockwave");
+            
+            foreach (CharacterBody2D enemy in shockwave.GetOverlappingBodies()){
+                 GD.Print("Hit");
+            }
 
-            GD.Print("Shockwave created at position: " + character.Position);
         } else {
             GD.Print("Performing Simple Stomp");
             

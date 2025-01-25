@@ -2,22 +2,30 @@ using Godot;
 using System;
 
 public partial class Character : CharacterBody2D {
-    private StateMachine _MovingStateMachine;
-    private StateMachine _BubbleStateMachine;
+    private StateMachine MovingStateMachine;
+    private StateMachine BubbleStateMachine;
+    [Export] private HealthComponent health;
+    [Export] private int bubbleBlock = 5; 
 
     public override void _Ready() {
-        _MovingStateMachine = GetNode<StateMachine>("MovingStateMachine");
-        _BubbleStateMachine = GetNode<StateMachine>("BubbleStateMachine");
+        MovingStateMachine = GetNode<StateMachine>("MovingStateMachine");
+        BubbleStateMachine = GetNode<StateMachine>("BubbleStateMachine");
 
-        // Initialize states
-        _MovingStateMachine.ChangeState("IdleState");
-        _BubbleStateMachine.ChangeState("DefaultState");
+        MovingStateMachine.ChangeState("IdleState");
+        BubbleStateMachine.ChangeState("DefaultState");
     }
 
     public override void _Process(double delta) {
-        // Handle blocking input
-        if (Input.IsActionJustPressed("block")) {
-            _BubbleStateMachine.ChangeState("BlockingState");
+        
+    }
+
+    public void OnHit(Hitbox hitbox){
+        //if(hitbox.GetParent() == )
+        if (BubbleStateMachine?.currentState.Name == "BlockingState" && bubbleBlock > 0) {
+            bubbleBlock -= 1;
+        }
+        else{
+            health.RemoveHealth(1);
         }
     }
 }
