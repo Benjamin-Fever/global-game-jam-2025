@@ -1,14 +1,11 @@
-extends Label
 
+extends Door.cs
 
 # Called when the node enters the scene tree for the first time.
-func _ready() -> void:
+func _ready():
 	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-
-@export var target: Node2D
-
-func _process(_delta: float) -> void:
-	text = "%d, %d" % [target.position.x, target.position.y]
+func _process(delta):
+	pass

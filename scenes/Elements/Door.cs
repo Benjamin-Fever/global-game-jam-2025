@@ -22,7 +22,7 @@ public partial class Door : Area2D
 		
 	}
 
-	private void OnBodyEntered(Node2D body)
+	public virtual void OnBodyEntered(Node2D body)
 	{
 		GD.Print("Door");
 		if (body is CharacterBody2D player)

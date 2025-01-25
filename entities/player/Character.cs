@@ -1,13 +1,15 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 
 [GlobalClass]
 public partial class Character : CharacterBody2D {
 	private StateMachine MovingStateMachine;
 	private StateMachine BubbleStateMachine;
 	[Export] private HealthComponent health;
-	[Export] private int bubbleBlock = 5; 
-	
+	[Export] private int bubbleBlock = 5;
+
+    readonly List<string> keys = new();
 
 	public override void _Ready() {
 		MovingStateMachine = GetNode<StateMachine>("MovingStateMachine");
@@ -30,6 +32,23 @@ public partial class Character : CharacterBody2D {
 			health.RemoveHealth(1);
 		}
 	}
-	
+	public bool HasKey(string key){
+		//Check if the key is in the list of keys
+		return keys.Contains(key);
+	}
+
+	public void AddKey(string key){
+		keys.Add(key);
+	}
+	public void RemoveKey(string key){
+		keys.Remove(key);
+	}
+
+	public void printKeys(){
+		foreach (var key in keys)
+		{
+			GD.Print(key);
+		}
+	}
 
 }
