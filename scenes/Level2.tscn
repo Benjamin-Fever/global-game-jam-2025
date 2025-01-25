@@ -1,11 +1,17 @@
-[gd_scene load_steps=4 format=4 uid="uid://b4807ho3c28um"]
+[gd_scene load_steps=6 format=4 uid="uid://b4807ho3c28um"]
 
 [ext_resource type="Script" path="res://common/Scene2D.cs" id="1_1mdxi"]
+[ext_resource type="Script" path="res://common/SceneData.cs" id="2_iq23n"]
 [ext_resource type="TileSet" uid="uid://bunm4nqw3sus" path="res://scenes/assets/ltileset_reasuorce.tres" id="4_8n270"]
 [ext_resource type="Script" path="res://common/GameMap.cs" id="6_qsuhx"]
 
+[sub_resource type="Resource" id="Resource_fd720"]
+script = ExtResource("2_iq23n")
+data = {}
+
 [node name="Level2" type="Node2D" node_paths=PackedStringArray("mapLayer")]
 script = ExtResource("1_1mdxi")
+sceneData = SubResource("Resource_fd720")
 mapLayer = NodePath("Gamemap")
 
 [node name="Gamemap" type="TileMapLayer" parent="."]
