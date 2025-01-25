@@ -30,6 +30,7 @@ public partial class GameMap : TileMapLayer {
     public Array<Vector2> GetPathToPoint(Vector2 start, Vector2 end) {
         Vector2I fromID = LocalToMap(start);
         Vector2I toID = LocalToMap(end);
+        GD.Print(fromID, toID);
         Vector2[] path = astar.GetPointPath(fromID, toID);
         return new Array<Vector2>(path);
     }

@@ -10,19 +10,16 @@ public partial class DashState : State {
     private bool shielded = false;
 
     public override void Enter() {
-        GD.Print("Entering Dash State");
 
         var character = GetParent<StateMachine>().GetParent<CharacterBody2D>();
         var bubbleStateMachine = character.GetNodeOrNull<StateMachine>("BubbleStateMachine");
 
         if (bubbleStateMachine?.currentState.Name == "BlockingState") {
-            GD.Print("Performing Shielded Dash");
 
             //SHIELDED DASH HERE
             shielded = true;
 
         } else {
-            GD.Print("Performing Regular Dash");
 
             //REGULAR DASH (code may not need anything here?)
         }
@@ -41,7 +38,6 @@ public partial class DashState : State {
 
     public void onCollide(Node2D enemy){
         if(shielded){
-            GD.Print("Hit");
             //if(check its an enemy)
 
             //enemy.getDirection
@@ -68,6 +64,5 @@ public partial class DashState : State {
     }
 
     public override void Exit() {
-        GD.Print("Exiting Dash State");
     }
 }

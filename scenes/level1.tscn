@@ -88,4 +88,3 @@ script = ExtResource("4_n4uu6")
 
 [node name="BasicEnemy" parent="." instance=ExtResource("2_i0655")]
 position = Vector2(694, 214)
-Speed = 200.0

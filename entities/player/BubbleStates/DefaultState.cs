@@ -3,7 +3,6 @@ using System;
 
 public partial class DefaultState : State {
     public override void Enter() {
-        GD.Print("Entering Default Bubble State (Vulnerable)");
     }
 
     public override void Update(double delta) {
@@ -22,7 +21,6 @@ public partial class DefaultState : State {
         //reflect
         if (Input.IsActionJustPressed("reflect")) {
             if (reflectingState.IsActive || reflectingState.IsOnCooldown) {
-                GD.Print("Cannot block while Reflecting Shield is active or on cooldown");
                 return;
             }
             else{
@@ -33,6 +31,5 @@ public partial class DefaultState : State {
 
 
     public override void Exit() {
-        GD.Print("Exiting Default Bubble State");
     }
 }
