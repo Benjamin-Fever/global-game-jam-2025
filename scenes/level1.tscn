@@ -21,4 +21,4 @@ script = null
 
 [node name="Door_Right" parent="." instance=ExtResource("5_2y1vr")]
 position = Vector2(515, 353)
-DestinationLevel = "C:/Temp/global-game-jam-2025/scenes/Level2.tscn"
+DestinationLevel = "res://scenes/Level2.tscn"
