@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=4 uid="uid://clnupjgooxsja"]
+[gd_scene load_steps=8 format=4 uid="uid://clnupjgooxsja"]
 
 [ext_resource type="Script" path="res://common/Scene2D.cs" id="1_khoed"]
 [ext_resource type="Script" path="res://common/SceneData.cs" id="2_lmmfy"]
 [ext_resource type="TileSet" uid="uid://bunm4nqw3sus" path="res://scenes/assets/ltileset_reasuorce.tres" id="3_1db1h"]
 [ext_resource type="Script" path="res://common/GameMap.cs" id="4_indu6"]
 [ext_resource type="PackedScene" uid="uid://btd76hb2m8x7x" path="res://scenes/Elements/Doors/Door_Up.tscn" id="5_ty8w2"]
+[ext_resource type="PackedScene" uid="uid://bodlupx4v4vwl" path="res://scenes/Elements/Doors/Door_Left.tscn" id="6_25eyr"]
 
 [sub_resource type="Resource" id="Resource_f4fu8"]
 script = ExtResource("2_lmmfy")
@@ -24,3 +25,6 @@ script = ExtResource("4_indu6")
 
 [node name="Level23 Up Door" parent="Doors" instance=ExtResource("5_ty8w2")]
 position = Vector2(208, -16)
+
+[node name="Door_Left" parent="Doors" instance=ExtResource("6_25eyr")]
+position = Vector2(-16, 208)

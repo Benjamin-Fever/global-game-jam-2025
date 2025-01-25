@@ -7,8 +7,8 @@ public partial class DashState : State {
 	private const float PushDistance = 64f; //pushing disntace
 	private Vector2 dashDirection;
 	private float dashProgress;
-	private bool shielded = false;
-
+	public bool shielded = false;
+	public bool IsActive { get; private set; } = false;
 	public override void Enter() {
 
 		var character = GetParent<StateMachine>().GetParent<CharacterBody2D>();
@@ -34,6 +34,7 @@ public partial class DashState : State {
 
 		dashProgress = 0;
 		character.Velocity = Vector2.Zero; //remove extra movement
+		IsActive = true;
 	}
 
 	public void onCollide(Node2D enemy){
@@ -59,6 +60,7 @@ public partial class DashState : State {
 		//only finish if dash is complete
 		if (dashProgress >= DashDistance) {
 			shielded = false;
+			IsActive = false;
 			ChangeState("IdleState");
 		}
 	}

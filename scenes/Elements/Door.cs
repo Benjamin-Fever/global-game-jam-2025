@@ -24,10 +24,11 @@ public partial class Door : Area2D
 
 	private void OnBodyEntered(Node2D body)
 	{
+		GD.Print("Door");
 		if (body is CharacterBody2D player)
 		{
 			if (player is Character)
-			print("door");
+			
 				{
 				player.GlobalPosition = DestinationVector;
 				}
