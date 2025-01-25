@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bqy4kwoeaoj6f"]
+[gd_scene load_steps=15 format=3 uid="uid://bqy4kwoeaoj6f"]
 
 [ext_resource type="Texture2D" uid="uid://dhh87ttqr3r64" path="res://entities/enemy/Sprite-0002-Skull_scaled_35x_pngcrushed.png" id="1_h587q"]
 [ext_resource type="Script" path="res://entities/enemy/VelocityComponent.cs" id="2_16nku"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://entities/enemy/AttackPlayerState.cs" id="6_1grur"]
 [ext_resource type="Script" path="res://entities/enemy/PlayerDetection.cs" id="6_h12rh"]
 [ext_resource type="Script" path="res://common/HealthComponent.cs" id="8_if58v"]
+[ext_resource type="Script" path="res://entities/enemy/StunnedState.cs" id="8_wnsrr"]
 [ext_resource type="Script" path="res://common/Hitbox.cs" id="9_tfp6q"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_olc2j"]
@@ -55,6 +56,9 @@ velocityComponent = NodePath("../../VelocityComponent")
 
 [node name="AttackPlayerState" type="Node" parent="StateMachine"]
 script = ExtResource("6_1grur")
+
+[node name="StunnedState" type="Node" parent="StateMachine"]
+script = ExtResource("8_wnsrr")
 
 [node name="AgroRange" type="Area2D" parent="."]
 collision_layer = 4

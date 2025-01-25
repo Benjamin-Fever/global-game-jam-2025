@@ -46,8 +46,8 @@ velocityComponent = NodePath("../../VelocityComponent")
 
 [node name="DashState" type="Node" parent="MovingStateMachine" node_paths=PackedStringArray("velocityComponent")]
 script = ExtResource("4_6xyvm")
-DashDistance = 64.0
-DashTime = 0.1
+DashDistance = 99.525
+DashTime = 0.08
 velocityComponent = NodePath("../../VelocityComponent")
 
 [node name="StompState" type="Node" parent="MovingStateMachine" node_paths=PackedStringArray("velocityComponent")]
