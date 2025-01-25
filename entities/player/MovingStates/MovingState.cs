@@ -3,7 +3,7 @@ using System;
 
 public partial class MovingState : State {
 	private const float Speed = 200f; //movement speed
-
+	[Export] VelocityComponent velocityComponent;
 	public override void Update(double delta) {
 		var character = GetParent<StateMachine>().GetParent<CharacterBody2D>();
 		var bubbleStateMachine = character.GetNodeOrNull<StateMachine>("BubbleStateMachine");
@@ -19,15 +19,9 @@ public partial class MovingState : State {
 		}
 
 		//movement
-		Vector2 input = Vector2.Zero;
-		if (Input.IsActionPressed("move_right")) input.X += 1;
-		if (Input.IsActionPressed("move_left")) input.X -= 1;
-		if (Input.IsActionPressed("move_up")) input.Y -= 1;
-		if (Input.IsActionPressed("move_down")) input.Y += 1;
+		Vector2 input = Input.GetVector("move_left", "move_right", "move_up", "move_down");
 
-		input = input.Normalized() * Speed;
-		character.Velocity = input;
-		character.MoveAndSlide();
+		velocityComponent.Velocity = input.Normalized() * Speed;
 
 		//idle
 		if (input == Vector2.Zero) {

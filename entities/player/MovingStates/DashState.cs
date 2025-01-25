@@ -2,65 +2,56 @@ using Godot;
 using System;
 
 public partial class DashState : State {
-	private const float DashSpeed = 400f; //dash speed
-	private const float DashDistance = 128f; //dash distance
-	private const float PushDistance = 64f; //pushing disntace
+	[Export] private float DashDistance = 256f; //dash distance
+	[Export] private float DashTime = 1.0f;
+	private const float PushDistance = 64 * 20f; //pushing disntace
 	private Vector2 dashDirection;
-	private float dashProgress;
 	private bool shielded = false;
+	private Vector2 startPos;
+	private Vector2 prevPos;
+	private Vector2 velocityDirection;
+	private Character character;
 
-	public override void Enter() {
+	[Export] VelocityComponent velocityComponent;
 
-		var character = GetParent<StateMachine>().GetParent<CharacterBody2D>();
-		var bubbleStateMachine = character.GetNodeOrNull<StateMachine>("BubbleStateMachine");
-
-		if (bubbleStateMachine?.currentState.Name == "BlockingState") {
-
-			//SHIELDED DASH HERE
-			shielded = true;
-
-		} else {
-
-			//REGULAR DASH (code may not need anything here?)
-		}
-
-		//direction
-		dashDirection = character.Velocity.Normalized();
-
-		//default to right if not moving currently
-		if (dashDirection == Vector2.Zero) {
-			dashDirection = new Vector2(1, 0);
-		}
-
-		dashProgress = 0;
-		character.Velocity = Vector2.Zero; //remove extra movement
+	public override void _Ready() {
+		character = GetParent<StateMachine>().GetParent<Character>();
 	}
 
-	public void onCollide(Node2D enemy){
+	public override void Enter() {
+		var bubbleStateMachine = character.GetNodeOrNull<StateMachine>("BubbleStateMachine");
+		shielded = bubbleStateMachine?.currentState.Name == "BlockingState";
+		if(shielded){character.bubbleBlock = 0;}
+		
+		dashDirection = character.Velocity.Normalized() == Vector2.Zero ?  velocityDirection : character.Velocity.Normalized();
+		character.Velocity = Vector2.Zero;
+		startPos = character.GlobalPosition;
+	}
+
+	public void OnCollide(Node2D enemy){
 		if(shielded){
-			//if(check its an enemy)
-
-			//enemy.getDirection
-
-			if(enemy is CharacterBody2D enemyBody){
-				enemyBody.Velocity += PushDistance * Vector2.Up;   
+			if(enemy.IsInGroup("enemy")){
+				enemy.GetNode<VelocityComponent>("VelocityComponent").Velocity = dashDirection * PushDistance;
+				enemy.GetNode<StateMachine>("StateMachine").ChangeState("StunnedState");
 			}
 		}
 	}
 
 	public override void Update(double delta) {
-		var character = GetParent<StateMachine>().GetParent<CharacterBody2D>();
+		velocityComponent.Velocity =  dashDirection * (DashDistance / DashTime);
 
-		//do dash
-		var dashStep = dashDirection * DashSpeed * (float)delta;
-		character.Position += dashStep;
-		dashProgress += dashStep.Length();
-
-		//only finish if dash is complete
-		if (dashProgress >= DashDistance) {
+		if (startPos.DistanceTo(character.GlobalPosition) >= DashDistance || prevPos == character.GlobalPosition){
 			shielded = false;
 			ChangeState("IdleState");
+			velocityComponent.Velocity = Vector2.Zero;
 		}
+		prevPos = character.GlobalPosition;
+	}
+
+	public override void _Process(double delta) {
+		base._Process(delta);
+
+		velocityDirection = character.Velocity.Normalized() == Vector2.Zero ? velocityDirection : character.Velocity.Normalized();
 	}
 
 	public override void Exit() {
