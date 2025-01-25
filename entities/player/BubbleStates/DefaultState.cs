@@ -6,7 +6,7 @@ public partial class DefaultState : State {
     }
 
     public override void Update(double delta) {
-        var character = GetParent<StateMachine>().GetParent<Character>();
+        var character = GetParent<StateMachine>().GetParent<CharacterBody2D>();
         var bubbleStateMachine = character.GetNode<StateMachine>("BubbleStateMachine");
 
         //check for cooldown on reflecting state
@@ -14,12 +14,12 @@ public partial class DefaultState : State {
 
 
         //block
-        if (Input.IsActionJustPressed("block") && character.bubbleBlock > 0) {
+        if (Input.IsActionJustPressed("block")) {
             ChangeState("BlockingState");
         }
 
         //reflect
-        if (Input.IsActionJustPressed("reflect") && character.bubbleBlock > 0) {
+        if (Input.IsActionJustPressed("reflect")) {
             if (reflectingState.IsActive || reflectingState.IsOnCooldown) {
                 return;
             }

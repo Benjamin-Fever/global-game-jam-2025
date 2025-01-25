@@ -15,9 +15,6 @@ public partial class BlockingState : State {
         if (!Input.IsActionPressed("block")) {
             ChangeState("DefaultState");
         }
-        if(GetParent<StateMachine>().GetParent<Character>().bubbleBlock <=0){
-            ChangeState("DefaultState");
-        }
     }
 
     public override void Exit() {
