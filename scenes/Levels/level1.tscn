@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://common/Scene2D.cs" id="1_kff0g"]
 [ext_resource type="Script" path="res://common/SceneData.cs" id="2_fmfoj"]
 [ext_resource type="PackedScene" uid="uid://bqy4kwoeaoj6f" path="res://entities/enemy/basic_enemy.tscn" id="2_i0655"]
-[ext_resource type="TileSet" uid="uid://bunm4nqw3sus" path="res://scenes/assets/ltileset_reasuorce.tres" id="2_namwc"]
+[ext_resource type="TileSet" uid="uid://ebiy2nq11m2r" path="res://scenes/assets/ltileset_reasuorce.tres" id="2_namwc"]
 [ext_resource type="Script" path="res://common/GameMap.cs" id="4_n4uu6"]
 [ext_resource type="PackedScene" uid="uid://d3jjpjxylg7th" path="res://scenes/Elements/Doors/Door_Right.tscn" id="5_2y1vr"]
 [ext_resource type="PackedScene" uid="uid://bodlupx4v4vwl" path="res://scenes/Elements/Doors/Door_Left.tscn" id="7_wrphf"]

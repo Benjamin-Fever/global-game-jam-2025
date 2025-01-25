@@ -27,7 +27,6 @@ public partial class Door : Area2D
 		if (body is CharacterBody2D player)
 		{
 			if (player is Character)
-			print("door");
 				{
 				player.GlobalPosition = DestinationVector;
 				}
