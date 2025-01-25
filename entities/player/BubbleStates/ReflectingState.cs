@@ -10,13 +10,11 @@ public partial class ReflectingState : State {
     public bool IsOnCooldown { get; private set; } = false;
 
     public override void Enter() {
-        GD.Print("Entering Reflecting State");
 
         var character = GetParent<StateMachine>().GetParent<CharacterBody2D>();
         reflectingBubble = character.GetNode<Node2D>("ReflectingBubble");
 
         if (IsOnCooldown) {
-            GD.Print("Reflecting is on cooldown!");
             ChangeState("DefaultState");
             return;
         }
@@ -42,7 +40,6 @@ public partial class ReflectingState : State {
     }
 
     public override void Exit() {
-        GD.Print("Exiting Reflecting State");
 
         if (reflectingBubble != null) {
             reflectingBubble.Visible = false;
@@ -56,6 +53,5 @@ public partial class ReflectingState : State {
 
     private void ResetCooldown() {
         IsOnCooldown = false;
-        GD.Print("Reflecting cooldown ended.");
     }
 }

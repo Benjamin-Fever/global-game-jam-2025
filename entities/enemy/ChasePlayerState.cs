@@ -9,7 +9,7 @@ public partial class ChasePlayerState : State {
 
     public override void _Ready() {
         player = GetTree().Root.GetNode<Character>("Main/Player");
-		body = GetParent<CharacterBody2D>();
+		body = GetParent().GetParent<CharacterBody2D>();
     }
 
 
@@ -26,7 +26,7 @@ public partial class ChasePlayerState : State {
 			body.GlobalPosition = path[0];
 			path.RemoveAt(0);
 		}
-		GetParent<CharacterBody2D>().Velocity = direction.Normalized() * ChaseSpeed;
-
+		body.Velocity = direction.Normalized() * ChaseSpeed;
+		body.MoveAndSlide();
     }
 }

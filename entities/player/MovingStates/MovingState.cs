@@ -4,10 +4,6 @@ using System;
 public partial class MovingState : State {
     private const float Speed = 200f; //movement speed
 
-    public override void Enter() {
-        GD.Print("Entering Moving State");
-    }
-
     public override void Update(double delta) {
         var character = GetParent<StateMachine>().GetParent<CharacterBody2D>();
         var bubbleStateMachine = character.GetNodeOrNull<StateMachine>("BubbleStateMachine");

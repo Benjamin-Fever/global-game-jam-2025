@@ -2,9 +2,6 @@ using Godot;
 using System;
 
 public partial class IdleState : State {
-    public override void Enter() {
-        GD.Print("Character is idle");
-    }
 
     public override void Update(double delta) {
         var character = GetParent<StateMachine>().GetParent<CharacterBody2D>();

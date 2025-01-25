@@ -45,6 +45,7 @@ public partial class SceneManager : Node {
 	}
 
 	public static Array<Vector2> GetPathToPoint(Vector2 start, Vector2 end) {
+		GD.Print("current scene: ", currentScene);
 		return currentScene?.GetPathToPoint(start, end);
 	}
 }
