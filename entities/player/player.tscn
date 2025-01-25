@@ -105,3 +105,5 @@ shape = SubResource("RectangleShape2D_t1tcu")
 [node name="Health" type="Node" parent="."]
 script = ExtResource("10_wldwt")
 MaxHealth = 3
+
+[connection signal="body_entered" from="Hitbox" to="." method="OnCollide"]

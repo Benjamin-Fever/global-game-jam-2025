@@ -36,10 +36,13 @@ public partial class DashState : State {
         character.Velocity = Vector2.Zero; //remove extra movement
     }
 
-    public void onCollide(Node2D enemy){
+    public void OnCollide(Node2D enemy){
+        GD.Print("GEt");
         if(shielded){
             if(enemy.IsInGroup("enemy")){
+                GD.Print(enemy.GetNode<VelocityComponent>("VelocityComponent").Velocity);
                 enemy.GetNode<VelocityComponent>("VelocityComponent").Velocity = dashDirection * PushDistance;
+                GD.Print(enemy.GetNode<VelocityComponent>("VelocityComponent").Velocity);
             }
         }
     }
