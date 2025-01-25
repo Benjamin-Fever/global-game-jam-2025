@@ -6,11 +6,12 @@ public partial class DashState : State {
     [Export] private float DashTime = 1.0f;
     private const float PushDistance = 64 * 20f; //pushing disntace
     private Vector2 dashDirection;
-    private bool shielded = false;
+    public bool shielded = false;
     private Vector2 startPos;
     private Vector2 prevPos;
     private Vector2 velocityDirection;
     private Character character;
+    public bool IsActive { get; private set; } = false;
 
     [Export] VelocityComponent velocityComponent;
 
@@ -26,6 +27,7 @@ public partial class DashState : State {
         dashDirection = character.Velocity.Normalized() == Vector2.Zero ?  velocityDirection : character.Velocity.Normalized();
         character.Velocity = Vector2.Zero;
         startPos = character.GlobalPosition;
+        IsActive = true;
     }
 
     public void OnCollide(Node2D enemy){
@@ -42,6 +44,7 @@ public partial class DashState : State {
 
         if (startPos.DistanceTo(character.GlobalPosition) >= DashDistance || prevPos == character.GlobalPosition){
             shielded = false;
+            IsActive = false;
             ChangeState("IdleState");
             velocityComponent.Velocity = Vector2.Zero;
         }
