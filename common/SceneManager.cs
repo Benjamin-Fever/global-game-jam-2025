@@ -2,7 +2,7 @@ using Godot;
 using Godot.Collections;
 
 [GlobalClass]
-public partial class SceneManager : Node2D {
+public partial class SceneManager : Node {
 	public static SceneManager instance;
 	public static Scene2D currentScene;
 
@@ -45,7 +45,6 @@ public partial class SceneManager : Node2D {
 	}
 
 	public static Array<Vector2> GetPathToPoint(Vector2 start, Vector2 end) {
-		GD.Print("current scene: ", currentScene);
 		return currentScene?.GetPathToPoint(start, end);
 	}
 }

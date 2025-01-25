@@ -3,14 +3,15 @@
 [ext_resource type="Script" path="res://scenes/Elements/door.gd" id="1_mm4j7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lx6fp"]
-size = Vector2(16, 16)
+size = Vector2(32, 32)
 
-[node name="Door" type="Area2D"]
+[node name="Door_Down" type="Area2D"]
 script = ExtResource("1_mm4j7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_lx6fp")
 
 [node name="Spawn" type="Marker2D" parent="."]
-position = Vector2(0, -20)
-gizmo_extents = 36.1
+position = Vector2(0, -32)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

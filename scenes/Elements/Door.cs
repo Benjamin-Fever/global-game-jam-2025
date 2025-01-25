@@ -1,7 +1,9 @@
 using Godot;
+using System;
 
 public partial class Door : Area2D
 {
+
 	[Export]
 	public string DestinationLevel { get; set; }
 	
@@ -18,10 +20,11 @@ public partial class Door : Area2D
 
 	private void OnBodyEntered(Node2D body)
 	{
-		if (body is CharacterBody2D)
+		if (body is Character)
 		{
 			SceneManager.ChangeScene(DestinationLevel);
 			GD.Print("Door");
 		}
 	}
+
 }

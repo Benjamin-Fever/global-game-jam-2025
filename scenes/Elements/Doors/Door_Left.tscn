@@ -1,12 +1,17 @@
-[gd_scene load_steps=2 format=3 uid="uid://bhmdt0416x5is"]
+[gd_scene load_steps=3 format=3 uid="uid://bodlupx4v4vwl"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_nj1j1"]
-size = Vector2(16, 16)
+[ext_resource type="Script" path="res://scenes/Elements/door.gd" id="1_d2nfo"]
 
-[node name="DoorLeft" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qyelf"]
+size = Vector2(32, 32)
 
-[node name="Marker2D" type="Marker2D" parent="."]
+[node name="DoorLeft" type="Area2D"]
+script = ExtResource("1_d2nfo")
+destination_level = null
+destination_direction = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_nj1j1")
-disabled = true
+shape = SubResource("RectangleShape2D_qyelf")
+
+[node name="Spawn" type="Marker2D" parent="."]
+position = Vector2(32, 0)
