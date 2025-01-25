@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dcsf3d23rjvxo"]
+[gd_scene load_steps=17 format=3 uid="uid://c1l4lqtlrepr5"]
 
 [ext_resource type="Texture2D" uid="uid://dhh87ttqr3r64" path="res://entities/enemy/Sprite-0002-Skull_scaled_35x_pngcrushed.png" id="1_ixgeg"]
 [ext_resource type="Script" path="res://common/Statemachine/StateMachine.cs" id="2_bj2u5"]
@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://entities/enemy/VelocityComponent.cs" id="3_tt2fl"]
 [ext_resource type="Script" path="res://entities/enemy/ChasePlayerState.cs" id="4_twd2r"]
 [ext_resource type="Script" path="res://entities/enemy/ShootPlayerState.cs" id="5_ave2j"]
-[ext_resource type="PackedScene" uid="uid://b0qkeehwqni7w" path="res://entities/enemy/projectile.tscn" id="6_0uhsv"]
+[ext_resource type="PackedScene" path="res://entities/enemy/projectile.tscn" id="6_0uhsv"]
 [ext_resource type="Script" path="res://entities/enemy/FleeState.cs" id="6_freio"]
 [ext_resource type="Script" path="res://entities/enemy/PlayerDetection.cs" id="6_fst7h"]
 [ext_resource type="Script" path="res://common/HealthComponent.cs" id="7_5b0lv"]
@@ -28,8 +28,7 @@ radius = 48.0
 radius = 20.6155
 
 [node name="ProjectileEnemy" type="CharacterBody2D" groups=["enemy"]]
-collision_layer = 0
-floor_max_angle = 0.0
+collision_layer = 2
 
 [node name="Sprite" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -69,6 +68,8 @@ FleeSpeed = 3000.0
 velocityComponent = NodePath("../../VelocityComponent")
 
 [node name="AgroRange" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 4
 script = ExtResource("6_fst7h")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AgroRange"]
@@ -76,6 +77,8 @@ shape = SubResource("CircleShape2D_us2g7")
 debug_color = Color(0.973416, 0, 0.437515, 0)
 
 [node name="SafeRange" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 4
 script = ExtResource("6_fst7h")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SafeRange"]
@@ -83,6 +86,8 @@ shape = SubResource("CircleShape2D_yrsmh")
 debug_color = Color(0.781661, 0.428903, 0.222919, 0)
 
 [node name="DangerRange" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 4
 script = ExtResource("6_fst7h")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DangerRange"]
@@ -90,6 +95,8 @@ shape = SubResource("CircleShape2D_ofh28")
 debug_color = Color(0.972549, 0, 0.45098, 0)
 
 [node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 4
 script = ExtResource("8_pvfm0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]

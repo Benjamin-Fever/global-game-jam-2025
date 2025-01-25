@@ -4,7 +4,7 @@ using System;
 public partial class DashState : State {
     private const float DashSpeed = 400f; //dash speed
     private const float DashDistance = 128f; //dash distance
-    private const float PushDistance = 64f; //pushing disntace
+    private const float PushDistance = 64 * 20f; //pushing disntace
     private Vector2 dashDirection;
     private float dashProgress;
     private bool shielded = false;
@@ -37,12 +37,9 @@ public partial class DashState : State {
     }
 
     public void OnCollide(Node2D enemy){
-        GD.Print("GEt");
         if(shielded){
             if(enemy.IsInGroup("enemy")){
-                GD.Print(enemy.GetNode<VelocityComponent>("VelocityComponent").Velocity);
                 enemy.GetNode<VelocityComponent>("VelocityComponent").Velocity = dashDirection * PushDistance;
-                GD.Print(enemy.GetNode<VelocityComponent>("VelocityComponent").Velocity);
             }
         }
     }

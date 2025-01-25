@@ -4,7 +4,7 @@ using System;
 public partial class StompState : State {
     private const float StompDuration = 1f;
     private float stompTime;
-    private const float PushDistance = 32f;
+    private const float PushDistance = 32f * 20f;
 
     public override void Enter() {
         stompTime = 0;
@@ -24,10 +24,7 @@ public partial class StompState : State {
                     Vector2 direction = locationEnemy - locationPlayer;
                     Vector2 normalisedDirection = direction.Normalized();
                     
-                    GD.Print(enemy.GetNode<VelocityComponent>("VelocityComponent").Velocity);
                     enemy.GetNode<VelocityComponent>("VelocityComponent").Velocity = normalisedDirection * PushDistance;
-                    GD.Print(enemy.GetNode<VelocityComponent>("VelocityComponent").Velocity);
-
                 }
 
             }

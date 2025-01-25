@@ -5,7 +5,7 @@
 [ext_resource type="TileSet" uid="uid://ebiy2nq11m2r" path="res://scenes/assets/ltileset_reasuorce.tres" id="2_namwc"]
 [ext_resource type="Script" path="res://common/GameMap.cs" id="4_n4uu6"]
 [ext_resource type="PackedScene" uid="uid://d3jjpjxylg7th" path="res://scenes/Elements/Doors/Door_Right.tscn" id="5_2y1vr"]
-[ext_resource type="PackedScene" path="res://entities/enemy/projectile_enemy.tscn" id="6_204ht"]
+[ext_resource type="PackedScene" uid="uid://c1l4lqtlrepr5" path="res://entities/enemy/projectile_enemy.tscn" id="6_204ht"]
 
 [node name="Level1" type="Node2D" node_paths=PackedStringArray("mapLayer")]
 script = ExtResource("1_kff0g")
@@ -16,12 +16,12 @@ tile_map_data = PackedByteArray("AAAIAAIAAQAEAAEAAAAJAAIAAQAEAAEAAAAKAAIAAQAEAAE
 tile_set = ExtResource("2_namwc")
 script = ExtResource("4_n4uu6")
 
-[node name="BasicEnemy" parent="." instance=ExtResource("2_i0655")]
-position = Vector2(693, 215)
-
 [node name="Door_Right" parent="." instance=ExtResource("5_2y1vr")]
 position = Vector2(515, 353)
 DestinationLevel = "res://scenes/Level2.tscn"
 
+[node name="BasicEnemy" parent="." instance=ExtResource("2_i0655")]
+position = Vector2(579, 205)
+
 [node name="ProjectileEnemy" parent="." instance=ExtResource("6_204ht")]
-position = Vector2(568, 457)
+position = Vector2(537, 498)
