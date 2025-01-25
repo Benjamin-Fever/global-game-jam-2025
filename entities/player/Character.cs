@@ -8,7 +8,6 @@ public partial class Character : CharacterBody2D {
 	[Export] private HealthComponent health;
 	[Export] private int bubbleBlock = 5; 
 	
-	[Export] private string last_door = "S";
 
 	public override void _Ready() {
 		MovingStateMachine = GetNode<StateMachine>("MovingStateMachine");
@@ -32,11 +31,5 @@ public partial class Character : CharacterBody2D {
 		}
 	}
 	
-	public void SetLastDoor(String ld){
-		last_door =  ld;
-	}
-	
-	public String GetLastDoor(){
-		return last_door;
-	}
+
 }

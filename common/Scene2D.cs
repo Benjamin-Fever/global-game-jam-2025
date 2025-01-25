@@ -28,7 +28,7 @@ public partial class Scene2D : Node2D {
 		}
 	}
 
-	public void Load(String direction) {
+	public void Load() {
 		foreach (NodePath path in sceneData.data.Keys) {
 			Node2D node = GetNodeOrNull<Node2D>(path);
 			if (node == null) {
@@ -41,17 +41,7 @@ public partial class Scene2D : Node2D {
 				node.Set(key, nodeData[key]);
 			}   
 		}
-		MovePlayerToSpawn(direction);
 	}
 	
-	private void MovePlayerToSpawn(String direction){
-		Node doorsNode = GetNode("Doors");
-		foreach (Node child in doorsNode.GetChildren())
-		{
-			if (child is Door door)
-			{
-			 
-			}
-		}
-	}
+
 }
