@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://c1l4lqtlrepr5"]
+[gd_scene load_steps=17 format=3 uid="uid://dcsf3d23rjvxo"]
 
 [ext_resource type="Texture2D" uid="uid://dhh87ttqr3r64" path="res://entities/enemy/Sprite-0002-Skull_scaled_35x_pngcrushed.png" id="1_ixgeg"]
 [ext_resource type="Script" path="res://common/Statemachine/StateMachine.cs" id="2_bj2u5"]
@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://entities/enemy/VelocityComponent.cs" id="3_tt2fl"]
 [ext_resource type="Script" path="res://entities/enemy/ChasePlayerState.cs" id="4_twd2r"]
 [ext_resource type="Script" path="res://entities/enemy/ShootPlayerState.cs" id="5_ave2j"]
-[ext_resource type="PackedScene" path="res://entities/enemy/projectile.tscn" id="6_0uhsv"]
+[ext_resource type="PackedScene" uid="uid://b0qkeehwqni7w" path="res://entities/enemy/projectile.tscn" id="6_0uhsv"]
 [ext_resource type="Script" path="res://entities/enemy/FleeState.cs" id="6_freio"]
 [ext_resource type="Script" path="res://entities/enemy/PlayerDetection.cs" id="6_fst7h"]
 [ext_resource type="Script" path="res://common/HealthComponent.cs" id="7_5b0lv"]
