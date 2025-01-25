@@ -20,12 +20,10 @@ public partial class Character : CharacterBody2D {
 
     public override void _Process(double delta) {
         if(bubbleBlock <= 0){
-            GD.Print("Popped!");
             currentTime += delta;
             if(currentTime >= bubbleCooldown){
                 bubbleBlock = 5;
                 currentTime = 0;
-                GD.Print("Unpopped");
             }
         }
     }
