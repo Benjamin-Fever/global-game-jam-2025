@@ -1,5 +1,6 @@
-[gd_scene load_steps=14 format=3 uid="uid://dx1jyuvel2xlh"]
+[gd_scene load_steps=15 format=3 uid="uid://dx1jyuvel2xlh"]
 
+[ext_resource type="Texture2D" uid="uid://b8q5bve5m4djc" path="res://entities/player/player.png" id="1_2udet"]
 [ext_resource type="Script" path="res://common/Statemachine/StateMachine.cs" id="1_sw0fi"]
 [ext_resource type="Script" path="res://entities/player/MovingStates/IdleState.cs" id="2_6d5jx"]
 [ext_resource type="Script" path="res://entities/player/MovingStates/MovingState.cs" id="3_h31n6"]
@@ -12,16 +13,20 @@
 [ext_resource type="Script" path="res://common/HealthComponent.cs" id="10_wldwt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_28cc2"]
-size = Vector2(64, 82)
+size = Vector2(32, 32)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_30syb"]
-radius = 142.172
+radius = 64.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t1tcu"]
-size = Vector2(64, 50)
+size = Vector2(32, 15)
 
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 29
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_2udet")
 
 [node name="MovingStateMachine" type="Node" parent="." node_paths=PackedStringArray("currentState")]
 script = ExtResource("1_sw0fi")
@@ -55,45 +60,44 @@ script = ExtResource("8_o1ixl")
 [node name="Hitbox" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-position = Vector2(564, 224)
 shape = SubResource("RectangleShape2D_28cc2")
+debug_color = Color(0, 0.6, 0.701961, 0)
 
 [node name="BlockingBubble" type="Node2D" parent="."]
 visible = false
 
 [node name="ColorRect" type="ColorRect" parent="BlockingBubble"]
-offset_left = 523.0
-offset_top = 173.0
-offset_right = 613.0
-offset_bottom = 273.0
+offset_left = -6.0
+offset_top = -6.0
+offset_right = 9.0
+offset_bottom = 9.0
 color = Color(0.156863, 1, 1, 1)
 
 [node name="ReflectingBubble" type="Node2D" parent="."]
 visible = false
 
-[node name="ColorRect" type="ColorRect" parent="ReflectingBubble"]
-offset_left = 523.0
-offset_top = 173.0
-offset_right = 613.0
-offset_bottom = 273.0
-color = Color(0.884198, 0.926025, 0.308746, 1)
+[node name="ColorRect2" type="ColorRect" parent="ReflectingBubble"]
+offset_left = -6.0
+offset_top = -6.0
+offset_right = 9.0
+offset_bottom = 9.0
+color = Color(1, 0.82717, 0.875424, 1)
 
 [node name="Shockwave" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Shockwave"]
-position = Vector2(564, 227)
 shape = SubResource("CircleShape2D_30syb")
-debug_color = Color(0.963093, 0.111309, 0.400728, 0.42)
+debug_color = Color(0.964706, 0.109804, 0.4, 0)
 
 [node name="Hurtbox" type="Area2D" parent="."]
 script = ExtResource("9_i4fe4")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
-position = Vector2(564, 224)
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Hurtbox"]
 shape = SubResource("RectangleShape2D_28cc2")
+debug_color = Color(0, 0.6, 0.701961, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(564, 239)
+position = Vector2(0, 8)
 shape = SubResource("RectangleShape2D_t1tcu")
 
 [node name="Health" type="Node" parent="."]
