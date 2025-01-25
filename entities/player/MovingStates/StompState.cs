@@ -9,8 +9,8 @@ public partial class StompState : State {
 
     public override void Enter() {
         stompTime = 0;
-        velocityComponent.Velocity = Vector2.Zero;
-        var character = GetParent<StateMachine>().GetParent<CharacterBody2D>();
+        
+        var character = GetParent<StateMachine>().GetParent<Character>();
         var bubbleStateMachine = character.GetNodeOrNull<StateMachine>("BubbleStateMachine");
 
         if (bubbleStateMachine?.currentState.Name == "BlockingState") {
@@ -29,14 +29,17 @@ public partial class StompState : State {
                 }
 
             }
+            character.bubbleBlock = 0;
 
         } else {
             
             //GROUND STOMP HERE
         }
+        velocityComponent.Velocity = Vector2.Zero;
     }
 
     public override void Update(double delta) {
+        velocityComponent.Velocity = Vector2.Zero;
         stompTime += (float)delta;
 
         if (stompTime >= StompDuration) {

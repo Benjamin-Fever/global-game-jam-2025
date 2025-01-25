@@ -6,7 +6,9 @@ public partial class Character : CharacterBody2D {
     private StateMachine MovingStateMachine;
     private StateMachine BubbleStateMachine;
     [Export] private HealthComponent health;
-    [Export] private int bubbleBlock = 5; 
+    [Export] public int bubbleBlock = 5; 
+    [Export] private int bubbleCooldown = 8;
+    private double currentTime;
 
     public override void _Ready() {
         MovingStateMachine = GetNode<StateMachine>("MovingStateMachine");
@@ -17,9 +19,16 @@ public partial class Character : CharacterBody2D {
     }
 
     public override void _Process(double delta) {
-        
+        if(bubbleBlock <= 0){
+            GD.Print("Popped!");
+            currentTime += delta;
+            if(currentTime >= bubbleCooldown){
+                bubbleBlock = 5;
+                currentTime = 0;
+                GD.Print("Unpopped");
+            }
+        }
     }
-
 
     public void OnOverlap(Area2D enemy){
         if (enemy is not Hitbox) return;
@@ -28,7 +37,7 @@ public partial class Character : CharacterBody2D {
             //if(projectile){ return;}
             VelocityComponent velocityComponent = enemy.GetParent().GetNode<VelocityComponent>("VelocityComponent");
             GD.Print( velocityComponent.Velocity);
-            velocityComponent.Velocity = -velocityComponent.Velocity.Normalized() * 800;
+            velocityComponent.Velocity = -velocityComponent.Velocity.Normalized() * 100;
             GD.Print( velocityComponent.Velocity);
         }
         else{
@@ -43,4 +52,5 @@ public partial class Character : CharacterBody2D {
             health.RemoveHealth(1);
         }
     }
+
 }

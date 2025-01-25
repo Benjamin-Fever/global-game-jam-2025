@@ -10,18 +10,19 @@ public partial class DashState : State {
     private Vector2 startPos;
     private Vector2 prevPos;
     private Vector2 velocityDirection;
-    private CharacterBody2D character;
+    private Character character;
 
     [Export] VelocityComponent velocityComponent;
 
     public override void _Ready() {
-        character = GetParent<StateMachine>().GetParent<CharacterBody2D>();
+        character = GetParent<StateMachine>().GetParent<Character>();
     }
 
     public override void Enter() {
         var bubbleStateMachine = character.GetNodeOrNull<StateMachine>("BubbleStateMachine");
         shielded = bubbleStateMachine?.currentState.Name == "BlockingState";
-
+        if(shielded){character.bubbleBlock = 0;}
+        
         dashDirection = character.Velocity.Normalized() == Vector2.Zero ?  velocityDirection : character.Velocity.Normalized();
         character.Velocity = Vector2.Zero;
         startPos = character.GlobalPosition;
