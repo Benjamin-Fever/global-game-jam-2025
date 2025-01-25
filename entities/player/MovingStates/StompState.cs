@@ -1,6 +1,5 @@
 using Godot;
 using System;
-using System.Runtime.Serialization;
 
 public partial class StompState : State {
     private const float StompDuration = 1f;
@@ -18,6 +17,17 @@ public partial class StompState : State {
             var shockwave = character.GetNodeOrNull<Area2D>("Shockwave");
             
             foreach (CharacterBody2D enemy in shockwave.GetOverlappingBodies()){
+
+                if(enemy.IsInGroup("enemy")){
+                    Vector2 locationEnemy = enemy.GlobalPosition;
+                    Vector2 locationPlayer = character.GlobalPosition;
+                    Vector2 direction = locationEnemy - locationPlayer;
+                    Vector2 normalisedDirection = direction.Normalized();
+                    
+                    enemy.Velocity = normalisedDirection * PushDistance;
+
+                }
+
             }
 
         } else {

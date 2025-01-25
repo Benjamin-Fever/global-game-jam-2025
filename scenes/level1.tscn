@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=4 uid="uid://dq2sg2tch7esk"]
+[gd_scene load_steps=8 format=4 uid="uid://dq2sg2tch7esk"]
 
 [ext_resource type="Script" path="res://common/Scene2D.cs" id="1_kff0g"]
 [ext_resource type="PackedScene" uid="uid://bqy4kwoeaoj6f" path="res://entities/enemy/basic_enemy.tscn" id="2_i0655"]
 [ext_resource type="Texture2D" uid="uid://btolrefu8fmo5" path="res://scenes/assets/tileset.png" id="3_s5jjs"]
 [ext_resource type="Script" path="res://common/GameMap.cs" id="4_n4uu6"]
+[ext_resource type="Script" path="res://entities/enemy/BasicEnemy.cs" id="5_utklc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_laol4"]
 texture = ExtResource("3_s5jjs")
@@ -88,3 +89,5 @@ script = ExtResource("4_n4uu6")
 
 [node name="BasicEnemy" parent="." instance=ExtResource("2_i0655")]
 position = Vector2(694, 214)
+script = ExtResource("5_utklc")
+Speed = 7000.0

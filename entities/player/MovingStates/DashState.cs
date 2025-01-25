@@ -38,12 +38,8 @@ public partial class DashState : State {
 
     public void onCollide(Node2D enemy){
         if(shielded){
-            //if(check its an enemy)
-
-            //enemy.getDirection
-
-            if(enemy is CharacterBody2D enemyBody){
-                enemyBody.Velocity += PushDistance * Vector2.Up;   
+            if(enemy.IsInGroup("enemy")){
+                //enemy.Velocity = dashDirection * PushDistance;
             }
         }
     }
