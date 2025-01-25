@@ -1,4 +1,4 @@
-extends Node2D
+extends Label
 
 
 # Called when the node enters the scene tree for the first time.
@@ -7,5 +7,8 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+
+@export var target: Node2D
+
+func _process(_delta: float) -> void:
+	text = "%d, %d" % [target.position.x, target.position.y]

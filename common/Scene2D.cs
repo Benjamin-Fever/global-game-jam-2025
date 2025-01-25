@@ -7,7 +7,8 @@ public partial class Scene2D : Node2D {
 	[Signal] public delegate void SceneLoadedEventHandler();
 	[Export] public SceneData sceneData;
 	[Export] private GameMap mapLayer;
-
+	
+	
 	public Array<Vector2> GetPathToPoint(Vector2 start, Vector2 end) {
 		return mapLayer.GetPathToPoint(start, end);
 	}
@@ -41,4 +42,6 @@ public partial class Scene2D : Node2D {
 			}   
 		}
 	}
+	
+
 }

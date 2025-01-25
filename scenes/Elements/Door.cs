@@ -8,22 +8,30 @@ public partial class Door : Area2D
 	public string DestinationLevel { get; set; }
 	
 	[Export]
-	public string DestinationDirection { get; set; }
+	public Vector2 DestinationVector { get; set; }
+	[Export]
 	
-	private Node2D _spawn;
+	private Node2D spawn;
+
+	
 
 	public override void _Ready()
 	{
-		_spawn = GetNode<Node2D>("Spawn");
+		spawn = GetNode<Node2D>("Spawn");
 		BodyEntered += OnBodyEntered;
+		
 	}
 
 	private void OnBodyEntered(Node2D body)
 	{
-		if (body is Character)
+		if (body is CharacterBody2D player)
 		{
-			SceneManager.ChangeScene(DestinationLevel);
-			GD.Print("Door");
+			if (player is Character)
+			print("door");
+				{
+				player.GlobalPosition = DestinationVector;
+				}
+				SceneManager.ChangeScene("res://scenes/Levels/"+DestinationLevel + ".tscn");
 		}
 	}
 

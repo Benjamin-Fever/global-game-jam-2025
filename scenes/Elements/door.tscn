@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://bravbsu3uiuwi"]
+[gd_scene load_steps=4 format=3 uid="uid://bravbsu3uiuwi"]
 
 [ext_resource type="Script" path="res://scenes/Elements/Door.cs" id="1_501gd"]
+[ext_resource type="Script" path="res://scenes/Elements/label.gd" id="2_31xc5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m54a4"]
 size = Vector2(16, 16)
@@ -12,5 +13,10 @@ script = ExtResource("1_501gd")
 shape = SubResource("RectangleShape2D_m54a4")
 
 [node name="Spawn" type="Marker2D" parent="."]
+
+[node name="Label" type="Label" parent="Spawn"]
+offset_right = 40.0
+offset_bottom = 23.0
+script = ExtResource("2_31xc5")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
