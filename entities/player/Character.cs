@@ -34,9 +34,8 @@ public partial class Character : CharacterBody2D {
             bubbleBlock -= 1;
             //if(projectile){ return;}
             VelocityComponent velocityComponent = enemy.GetParent().GetNode<VelocityComponent>("VelocityComponent");
-            GD.Print( velocityComponent.Velocity);
             velocityComponent.Velocity = -velocityComponent.Velocity.Normalized() * 100;
-            GD.Print( velocityComponent.Velocity);
+            enemy.GetParent().GetNode<StateMachine>("StateMachine").ChangeState("StunnedState");
         }
         else{
             health.RemoveHealth(1);

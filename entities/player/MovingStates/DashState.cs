@@ -32,6 +32,7 @@ public partial class DashState : State {
         if(shielded){
             if(enemy.IsInGroup("enemy")){
                 enemy.GetNode<VelocityComponent>("VelocityComponent").Velocity = dashDirection * PushDistance;
+                enemy.GetNode<StateMachine>("StateMachine").ChangeState("StunnedState");
             }
         }
     }
