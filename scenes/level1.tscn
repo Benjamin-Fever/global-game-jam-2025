@@ -21,7 +21,7 @@ position = Vector2(515, 353)
 DestinationLevel = "res://scenes/Level2.tscn"
 
 [node name="BasicEnemy" parent="." instance=ExtResource("2_i0655")]
-position = Vector2(579, 205)
+position = Vector2(560, 289)
 
 [node name="ProjectileEnemy" parent="." instance=ExtResource("6_204ht")]
 position = Vector2(537, 498)

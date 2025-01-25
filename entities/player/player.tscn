@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dx1jyuvel2xlh"]
+[gd_scene load_steps=17 format=3 uid="uid://dx1jyuvel2xlh"]
 
 [ext_resource type="Texture2D" uid="uid://b8q5bve5m4djc" path="res://entities/player/player.png" id="1_2udet"]
 [ext_resource type="Script" path="res://entities/player/Character.cs" id="1_r3kdq"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" path="res://entities/player/BubbleStates/ReflectingState.cs" id="8_o1ixl"]
 [ext_resource type="Script" path="res://common/Hurtbox.cs" id="9_i4fe4"]
 [ext_resource type="Script" path="res://common/HealthComponent.cs" id="10_wldwt"]
+[ext_resource type="Script" path="res://entities/enemy/VelocityComponent.cs" id="13_aw0kt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_28cc2"]
 size = Vector2(32, 32)
@@ -38,14 +39,19 @@ currentState = NodePath("IdleState")
 [node name="IdleState" type="Node" parent="MovingStateMachine"]
 script = ExtResource("2_6d5jx")
 
-[node name="MovingState" type="Node" parent="MovingStateMachine"]
+[node name="MovingState" type="Node" parent="MovingStateMachine" node_paths=PackedStringArray("velocityComponent")]
 script = ExtResource("3_h31n6")
+velocityComponent = NodePath("../../VelocityComponent")
 
-[node name="DashState" type="Node" parent="MovingStateMachine"]
+[node name="DashState" type="Node" parent="MovingStateMachine" node_paths=PackedStringArray("velocityComponent")]
 script = ExtResource("4_6xyvm")
+DashDistance = 64.0
+DashTime = 0.1
+velocityComponent = NodePath("../../VelocityComponent")
 
-[node name="StompState" type="Node" parent="MovingStateMachine"]
+[node name="StompState" type="Node" parent="MovingStateMachine" node_paths=PackedStringArray("velocityComponent")]
 script = ExtResource("5_hvo7w")
+velocityComponent = NodePath("../../VelocityComponent")
 
 [node name="BubbleStateMachine" type="Node" parent="." node_paths=PackedStringArray("currentState")]
 script = ExtResource("1_sw0fi")
@@ -112,6 +118,10 @@ shape = SubResource("RectangleShape2D_t1tcu")
 [node name="Health" type="Node" parent="."]
 script = ExtResource("10_wldwt")
 MaxHealth = 3
+
+[node name="VelocityComponent" type="Node" parent="." node_paths=PackedStringArray("body")]
+script = ExtResource("13_aw0kt")
+body = NodePath("..")
 
 [connection signal="body_entered" from="Hitbox" to="MovingStateMachine/DashState" method="OnCollide"]
 [connection signal="area_entered" from="Hurtbox" to="." method="OnOverlap"]

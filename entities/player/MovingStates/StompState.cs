@@ -5,10 +5,11 @@ public partial class StompState : State {
     private const float StompDuration = 1f;
     private float stompTime;
     private const float PushDistance = 32f * 20f;
+    [Export] VelocityComponent velocityComponent;
 
     public override void Enter() {
         stompTime = 0;
-
+        velocityComponent.Velocity = Vector2.Zero;
         var character = GetParent<StateMachine>().GetParent<CharacterBody2D>();
         var bubbleStateMachine = character.GetNodeOrNull<StateMachine>("BubbleStateMachine");
 
