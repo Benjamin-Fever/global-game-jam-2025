@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=4 uid="uid://dq2sg2tch7esk"]
+[gd_scene load_steps=7 format=4 uid="uid://dq2sg2tch7esk"]
 
 [ext_resource type="Script" path="res://common/Scene2D.cs" id="1_kff0g"]
 [ext_resource type="PackedScene" uid="uid://bqy4kwoeaoj6f" path="res://entities/enemy/basic_enemy.tscn" id="2_i0655"]
-[ext_resource type="TileSet" uid="uid://bunm4nqw3sus" path="res://scenes/assets/ltileset_reasuorce.tres" id="2_namwc"]
+[ext_resource type="TileSet" uid="uid://dskydeqxiq3ug" path="res://scenes/assets/ltileset_reasuorce.tres" id="2_namwc"]
 [ext_resource type="Script" path="res://common/GameMap.cs" id="4_n4uu6"]
 [ext_resource type="PackedScene" uid="uid://d3jjpjxylg7th" path="res://scenes/Elements/Doors/Door_Right.tscn" id="5_2y1vr"]
+[ext_resource type="PackedScene" uid="uid://dcsf3d23rjvxo" path="res://entities/enemy/projectile_enemy.tscn" id="6_204ht"]
 
 [node name="Level1" type="Node2D" node_paths=PackedStringArray("mapLayer")]
 script = ExtResource("1_kff0g")
@@ -17,8 +18,10 @@ script = ExtResource("4_n4uu6")
 
 [node name="BasicEnemy" parent="." instance=ExtResource("2_i0655")]
 position = Vector2(693, 215)
-script = null
 
 [node name="Door_Right" parent="." instance=ExtResource("5_2y1vr")]
 position = Vector2(515, 353)
 DestinationLevel = "res://scenes/Level2.tscn"
+
+[node name="ProjectileEnemy" parent="." instance=ExtResource("6_204ht")]
+position = Vector2(568, 457)
