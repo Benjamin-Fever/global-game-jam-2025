@@ -7,7 +7,8 @@ public partial class Scene2D : Node2D {
 	[Signal] public delegate void SceneLoadedEventHandler();
 	[Export] public SceneData sceneData;
 	[Export] private GameMap mapLayer;
-
+	
+	
 	public Array<Vector2> GetPathToPoint(Vector2 start, Vector2 end) {
 		return mapLayer.GetPathToPoint(start, end);
 	}
@@ -27,7 +28,7 @@ public partial class Scene2D : Node2D {
 		}
 	}
 
-	public void Load() {
+	public void Load(String direction) {
 		foreach (NodePath path in sceneData.data.Keys) {
 			Node2D node = GetNodeOrNull<Node2D>(path);
 			if (node == null) {
@@ -39,6 +40,18 @@ public partial class Scene2D : Node2D {
 			foreach (string key in nodeData.Keys) {
 				node.Set(key, nodeData[key]);
 			}   
+		}
+		MovePlayerToSpawn(direction);
+	}
+	
+	private void MovePlayerToSpawn(String direction){
+		Node doorsNode = GetNode("Doors");
+		foreach (Node child in doorsNode.GetChildren())
+		{
+			if (child is Door door)
+			{
+			 
+			}
 		}
 	}
 }

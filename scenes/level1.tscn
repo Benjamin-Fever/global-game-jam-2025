@@ -18,7 +18,6 @@ mapLayer = NodePath("GameMap")
 
 [node name="BasicEnemy" parent="." instance=ExtResource("2_i0655")]
 position = Vector2(693, 215)
-script = null
 
 [node name="Door_Right" parent="." instance=ExtResource("5_2y1vr")]
 position = Vector2(515, 353)

@@ -20,10 +20,17 @@ public partial class Door : Area2D
 
 	private void OnBodyEntered(Node2D body)
 	{
-		if (body is CharacterBody2D)
+		if (body is CharacterBody2D player)
 		{
-			SceneManager.ChangeScene(DestinationLevel);
-			GD.Print("Door");
+			if (player is Character)
+				{
+				string last_dir = player.getLastDirection();
+				SceneManager.ChangeScene(DestinationLevel, last_dir);
+				
+				
+				GD.Print("Leaving Door to" + last_dir);
+				player.setLastDoor(DestinationDirection);
+				}
 		}
 	}
 

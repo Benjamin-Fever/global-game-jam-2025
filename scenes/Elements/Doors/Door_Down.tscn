@@ -1,12 +1,12 @@
 [gd_scene load_steps=3 format=3 uid="uid://ce4awwipe81om"]
 
-[ext_resource type="Script" path="res://scenes/Elements/door.gd" id="1_mm4j7"]
+[ext_resource type="Script" path="res://scenes/Elements/Door.cs" id="1_esx64"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lx6fp"]
 size = Vector2(32, 32)
 
 [node name="Door_Down" type="Area2D"]
-script = ExtResource("1_mm4j7")
+script = ExtResource("1_esx64")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_lx6fp")

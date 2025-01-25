@@ -19,25 +19,25 @@ public partial class SceneManager : Node {
 
 	}
 
-	public static void ChangeScene(string scenePath) {
+	public static void ChangeScene(string scenePath, string direction) {
 		PackedScene scene = GD.Load<PackedScene>(scenePath);
 		if (scene == null) {
 			GD.PrintErr("Scene not found: " + scenePath);
 			return;
 		}
-		ChangeScene(scene);
+		ChangeScene(scene, direction);
 	}
 
-	public static void ChangeScene(PackedScene scene) {
-		ChangeScene(scene.Instantiate<Scene2D>());
+	public static void ChangeScene(PackedScene scene, string direction) {
+		ChangeScene(scene.Instantiate<Scene2D>(), direction);
 	}
 
-	public static void ChangeScene(Scene2D scene) {
+	public static void ChangeScene(Scene2D scene, string direction) {
 		currentScene.Save();
 		currentScene.QueueFree();
 		currentScene = scene;
 		instance.AddChild(scene);
-		scene.Load();
+		scene.Load(direction);
 	}
 
 	public static void CloseGame() {
